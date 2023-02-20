@@ -17,3 +17,20 @@ let arr2 = [[], [3, 1, 2]];
 console.log(twoDimensionalSum(arr2)); // 6
 
 // TWO DIMENSIONAL PRODUCT
+
+function twoDimensionalProduct(array) {
+  let product = 1;
+  for (let i = 0; i < array.length; i++) {
+    let row = array[i];
+    for (let j = 0; j < row.length; j++) {
+      product *= row[j];
+    }
+  }
+  return product;
+}
+
+let arr1 = [[6, 4], [5], [3, 1]];
+console.log(twoDimensionalProduct(arr1)); // 360
+
+let arr2 = [[11, 4], [2]];
+console.log(twoDimensionalProduct(arr2)); // 88
