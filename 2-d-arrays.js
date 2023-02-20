@@ -81,3 +81,25 @@ matrix = [
 ];
 
 console.log(maxColumn(matrix)); // [12, 19, 21]
+
+// ZIP
+
+function zip(arr1, arr2) {
+  let result = [];
+  for (let i = 0; i < arr1.length; i++) {
+    let row = [];
+    row.push(arr1[i]);
+    row.push(arr2[i]);
+    result.push(row);
+  }
+  return result;
+}
+
+console.log(zip([1, 2, 3, 4], ["eins", "zwei", "drei", "vier"]));
+// [ [ 1, 'eins' ], [ 2, 'zwei' ], [ 3, 'drei' ], [ 4, 'vier' ] ]
+
+console.log(zip(["eins", "zwei", "drei"], [1, 2, 3]));
+// [ [ 'eins', 1 ], [ 'zwei', 2 ], [ 'drei', 3 ] ]
+
+console.log(zip(["alef", "bet"], ["alpha", "beta"]));
+// [ [ 'alef', 'alpha' ], [ 'bet', 'beta' ] ]
