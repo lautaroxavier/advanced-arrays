@@ -103,3 +103,41 @@ console.log(zip(["eins", "zwei", "drei"], [1, 2, 3]));
 
 console.log(zip(["alef", "bet"], ["alpha", "beta"]));
 // [ [ 'alef', 'alpha' ], [ 'bet', 'beta' ] ]
+
+// ZANY ZIP
+
+function max(num1, num2) {
+  if (num1 > num2) {
+    return num1;
+  }
+  return num2;
+}
+
+function zanyZip(arr1, arr2) {
+  let result = [];
+  let maxLength = max(arr1.length, arr2.length);
+  for (let i = 0; i < maxLength; i++) {
+    let pair = [];
+    if (i < arr1.length) {
+      pair.push(arr1[i]);
+    } else {
+      pair.push(null);
+    }
+    if (i < arr2.length) {
+      pair.push(arr2[i]);
+    } else {
+      pair.push(null);
+    }
+    result.push(pair);
+  }
+  return result;
+}
+
+console.log(zanyZip([1, 2], ["eins", "zwei", "drei", "vier"]));
+// [ [ 1, 'eins' ], [ 2, 'zwei' ], [ null, 'drei' ], [ null, 'vier' ] ]
+
+console.log(zanyZip([1, 2, 3, 4], ["eins", "zwei", "drei"]));
+// [ [ 1, 'eins' ], [ 2, 'zwei' ], [ 3, 'drei' ], [ 4, null ] ]
+
+console.log(zanyZip(["alef", "bet"], ["alpha", "beta"]));
+// [ [ 'alef', 'alpha' ], [ 'bet', 'beta' ] ]
