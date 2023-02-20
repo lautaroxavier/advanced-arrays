@@ -56,3 +56,28 @@ matrix = [
 ];
 
 console.log(maxInMatrix(matrix)); // 72
+
+// MAX IN COLUMNS
+
+function maxColumn(matrix) {
+  let maxCol;
+  let maxCols = [];
+  for (let j = 0; j < matrix[0].length; j++) {
+    maxCol = -Infinity;
+    for (let i = 0; i < matrix.length; i++) {
+      if (matrix[i][j] > maxCol) {
+        maxCol = matrix[i][j];
+      }
+    }
+    maxCols.push(maxCol);
+  }
+  return maxCols;
+}
+
+matrix = [
+  [5, 9, 21],
+  [9, 19, 6],
+  [12, 14, 15],
+];
+
+console.log(maxColumn(matrix)); // [12, 19, 21]
