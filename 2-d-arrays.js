@@ -184,3 +184,51 @@ console.log(matrixAddition(matrixA, matrixB)); // [[11, 6], [7, 7]]
 console.log(matrixAddition(matrixA, matrixC)); // [[1, 5], [4, 6]]
 console.log(matrixAddition(matrixB, matrixC)); // [[8, 1], [3, -1]]
 console.log(matrixAddition(matrixD, matrixE)); // [[2, -5], [19, 14],
+
+// LUCKY NUMBERS
+
+function isLuckyNumber(matrix, row, col) {
+  let elem = matrix[row][col];
+  console.log(elem);
+  // verifico que sea el minimo de la fila
+  for (let j = 0; j < matrix[0].length; j++) {
+    if (elem > matrix[row][j]) {
+      return false;
+    }
+  }
+  // verifico que sea el maximo de la columna
+  for (let i = 0; i < matrix.length; i++) {
+    if (elem < matrix[i][col]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function luckyNumbers(matrix) {
+  let luckyNumbers = [];
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[0].length; j++) {
+      if (isLuckyNumber(matrix, i, j)) {
+        luckyNumbers.push(matrix[i][j]);
+      }
+    }
+  }
+  return luckyNumbers;
+}
+
+matrixA = [
+  [5, 9, 21],
+  [9, 19, 6],
+  [12, 14, 15],
+];
+
+console.log(luckyNumbers(matrixA)); // [12]
+
+matrixB = [
+  [5, 10, 8, 6],
+  [10, 2, 7, 9],
+  [21, 15, 19, 10],
+];
+
+console.log(luckyNumbers(matrixB)); // [10]
