@@ -232,3 +232,81 @@ matrixB = [
 ];
 
 console.log(luckyNumbers(matrixB)); // [10]
+
+// SPIRAL MATRIX
+
+function recorrerFila(matrix, fila, inicio, fin) {
+  let result = [];
+  if (inicio < fin) {
+    for (let i = inicio; i <= fin; i++) {
+      result.push(matrix[fila][i]);
+    }
+  } else {
+    for (let i = inicio; i >= fin; i--) {
+      result.push(matrix[fila][i]);
+    }
+  }
+  return result;
+}
+
+function recorrerCol(matrix, col, inicio, fin) {
+  let result = [];
+  if (inicio < fin) {
+    for (let i = inicio; i <= fin; i++) {
+      result.push(matrix[i][col]);
+    }
+  } else {
+    for (let i = inicio; i >= fin; i--) {
+      result.push(matrix[i][col]);
+    }
+  }
+  return result;
+}
+
+function spiralOrder(matrix) {
+  let spiralMatrix = [];
+  let topRow = 0;
+  let rightmostCol = matrix[0].length - 1;
+  let bottomRow = matrix.length - 1;
+  let leftmostCol = 0;
+  while (topRow !== bottomRow && leftmostCol !== rightmostCol) {
+    // recorrer la fila mas alta de izquierda a derecha
+    let topRowElems = recorrerFila(matrix, topRow, leftmostCol, rightmostCol);
+    spiralMatrix = spiralMatrix.concat(topRowElems);
+    // aumentar la fila mas alta
+    topRow++;
+    // recorrer la ultima columna de arriba a abajo
+    let rightmostColElems = recorrerCol(
+      matrix,
+      rightmostCol,
+      topRow,
+      bottomRow
+    );
+    spiralMatrix = spiralMatrix.concat(rightmostColElems);
+    // decrementar la ultima columna
+    rightmostCol--;
+    // recorrer ultima fila de derecha a izquierda
+    let bottomRowElems = recorrerFila(
+      matrix,
+      bottomRow,
+      rightmostCol,
+      leftmostCol
+    );
+    spiralMatrix = spiralMatrix.concat(bottomRowElems);
+    // decrementar ultima fila
+    bottomRow--;
+    // recorrer primera columna de abajo hacia arriba
+    let leftmostColElems = recorrerCol(matrix, leftmostCol, bottomRow, topRow);
+    spiralMatrix = spiralMatrix.concat(leftmostColElems);
+    // aumentar primera columna
+    leftmostCol++;
+  }
+  if (topRow === bottomRow) {
+    let fila = recorrerFila(matrix, topRow, leftmostCol, rightmostCol);
+    spiralMatrix = spiralMatrix.concat(fila);
+  } else {
+    let col = recorrerCol(matrix, leftmostCol, topRow, bottomRow);
+    spiralMatrix = spiralMatrix.concat(col);
+  }
+  return spiralMatrix;
+}
