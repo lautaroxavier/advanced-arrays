@@ -349,3 +349,20 @@ console.log(p2);
 //   [ 4, 4, 4 ],
 //   [ 2, 2, 2, 2 ]
 // ]
+
+// PASCALS TRIANGLE
+
+function pascalsTriangle(n) {
+  let triangle = [[1]];
+  for (let i = 1; i < n; i++) {
+    let newLevel = [1];
+    let lastLevel = triangle[triangle.length - 1];
+    for (let i = 1; i < lastLevel.length; i++) {
+      let elem = lastLevel[i - 1] + lastLevel[i];
+      newLevel.push(elem);
+    }
+    newLevel.push(1);
+    triangle.push(newLevel);
+  }
+  return triangle;
+}
