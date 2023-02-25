@@ -310,3 +310,42 @@ function spiralOrder(matrix) {
   }
   return spiralMatrix;
 }
+
+// PYRAMID ARRAY
+
+function pyramidArray(base) {
+  let pyramid = [base];
+  // mientras el primer elemento de la piramide tenga longitud mayor a 1
+  while (pyramid[0].length > 1) {
+    // tomar el primer elemento de la piramide
+    let nextLevel = [];
+    for (let i = 0; i < pyramid[0].length - 1; i++) {
+      // sumar los elementos adyacentes dos a dos
+      let sum = pyramid[0][i] + pyramid[0][i + 1];
+      // poner los resultados en una nueva lista
+      nextLevel.push(sum);
+    }
+    // agregar la lista como primer elemento de la piramide
+    pyramid.unshift(nextLevel);
+  }
+  return pyramid;
+}
+
+let p1 = pyramidArray([2, 3, 7, 5, 9]);
+console.log(p1);
+// [
+//   [ 85 ],
+//   [ 37, 48 ],
+//   [ 15, 22, 26 ],
+//   [ 5, 10, 12, 14 ],
+//   [ 2, 3, 7, 5, 9 ]
+// ]
+
+let p2 = pyramidArray([2, 2, 2, 2]);
+console.log(p2);
+// [
+//   [ 16 ],
+//   [ 8, 8 ],
+//   [ 4, 4, 4 ],
+//   [ 2, 2, 2, 2 ]
+// ]
